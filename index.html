@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Ultimate Geometry Dash</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    <div id="ui">
+        <div id="menu">
+            <div class="logo">GEOMETRY DASH ULTIMATE</div>
+            <button onclick="game.setState('levelselect')">PLAY</button>
+            <button onclick="game.setState('editor')">EDITOR</button>
+            <button onclick="game.setState('icons')">ICONS</button>
+            <button onclick="game.setState('stats')">STATS</button>
+            <button onclick="game.options()">OPTIONS</button>
+        </div>
+        <div id="levelselect" style="display:none;">
+            <h2>OFFICIAL LEVELS</h2>
+            <div class="levels-grid">
+                <button onclick="game.loadLevel(1)">1. Stereo Madness</button>
+                <button onclick="game.loadLevel(2)">2. Back on Track</button>
+                <button onclick="game.loadLevel(3)">3. Polargeist</button>
+                <button onclick="game.loadLevel(4)">4. Dry Out</button>
+                <button onclick="game.loadLevel(5)">5. Base After Base</button>
+                <button onclick="game.loadLevel(6)">6. Cant Let Go</button>
+                <button onclick="game.loadLevel(7)">7. Jumper</button>
+                <button onclick="game.loadLevel(8)">8. Time Machine</button>
+                <button onclick="game.loadLevel(9)">9. Cycles</button>
+                <button onclick="game.loadLevel(10)">10. xStep</button>
+                <button onclick="game.loadLevel(11)">11. Clutterfunk</button>
+                <button onclick="game.loadLevel(12)">12. Theory of Everything</button>
+                <button onclick="game.loadLevel(13)">13. Electroman Adventures</button>
+                <button onclick="game.loadLevel(14)">14. Clubstep</button>
+                <button onclick="game.loadLevel(15)">15. Electrodynamix</button>
+                <button onclick="game.loadLevel(16)">16. Hexagon Force</button>
+                <button onclick="game.loadLevel(17)">17. Blast Processing</button>
+                <button onclick="game.loadLevel(18)">18. Theory of Everything 2</button>
+                <button onclick="game.loadLevel(19)">19. Geometrical Dominator</button>
+                <button onclick="game.loadLevel(20)">20. Deadlocked</button>
+                <button onclick="game.loadLevel(21)">21. Fingerdash</button>
+                <button onclick="game.loadLevel(22)">22. Dash</button>
+                <button onclick="game.loadLevel(23)">23. Ultimate Features Demo</button>
+            </div>
+            <button onclick="game.setState('menu')">BACK</button>
+        </div>
+        <div id="pause" style="display:none;">
+            <h2>PAUSED</h2>
+            <button onclick="game.resume()">RESUME</button>
+            <button onclick="game.restart()">RESTART</button>
+            <button id="practice" onclick="game.togglePractice()">PRACTICE MODE</button>
+            <button onclick="game.toggleReplay()">REPLAY MODE</button>
+            <button onclick="game.setState('menu')">QUIT TO MENU</button>
+        </div>
+        <div id="stats" style="display:none;">
+            <h2>STATS</h2>
+            <p>Stars: 0</p>
+            <p>Demons: 0</p>
+            <p>Best: 100%</p>
+            <p>Coins: 0/3</p>
+            <p>Orbs: 0/3</p>
+            <button onclick="game.setState('menu')">BACK</button>
+        </div>
+        <div id="editor" style="display:none;">
+            <div class="toolbar">
+                <button onclick="editor.placeType('block')">Block</button>
+                <button onclick="editor.placeType('spike')">Spike</button>
+                <button onclick="editor.placeType('orb-yellow')">Yellow Orb</button>
+                <button onclick="editor.placeType('orb-green')">Green Orb</button>
+                <button onclick="editor.placeType('orb-red')">Red Orb</button>
+                <button onclick="editor.placeType('orb-dash')">Dash Orb</button>
+                <button onclick="editor.placeType('pad')">Jump Pad</button>
+                <button onclick="editor.placeType('portal-gravity')">Gravity Portal</button>
+                <button onclick="editor.placeType('portal-mini')">Mini Portal</button>
+                <button onclick="editor.placeType('portal-mirror')">Mirror Portal</button>
+                <button onclick="editor.placeType('portal-dual')">Dual Portal</button>
+                <button onclick="editor.placeType('portal-speed0.5')">0.5x Speed</button>
+                <button onclick="editor.placeType('portal-speed1')">1x Speed</button>
+                <button onclick="editor.placeType('portal-speed2')">2x Speed</button>
+                <button onclick="editor.placeType('portal-speed3')">3x Speed</button>
+                <button onclick="editor.placeType('portal-speed4')">4x Speed</button>
+                <button onclick="editor.placeType('portal-cube')">Cube Portal</button>
+                <button onclick="editor.placeType('portal-ship')">Ship Portal</button>
+                <button onclick="editor.placeType('portal-ball')">Ball Portal</button>
+                <button onclick="editor.placeType('portal-ufo')">UFO Portal</button>
+                <button onclick="editor.placeType('portal-wave')">Wave Portal</button>
+                <button onclick="editor.placeType('portal-robot')">Robot Portal</button>
+                <button onclick="editor.placeType('portal-spider')">Spider Portal</button>
+                <button onclick="editor.placeType('portal-swing')">Swing Portal</button>
+                <button onclick="editor.placeType('portal-tele')">Teleport Portal</button>
+                <button onclick="editor.placeType('coin')">Coin</button>
+                <button onclick="editor.placeType('finish')">Finish</button>
+                <button onclick="editor.placeType('trigger-move')">Move Trigger</button>
+                <button onclick="editor.placeType('trigger-color')">Color Trigger</button>
+                <button onclick="editor.placeType('trigger-alpha')">Alpha Trigger</button>
+                <button onclick="editor.undo()">UNDO</button>
+                <button onclick="editor.redo()">REDO</button>
+                <button onclick="editor.toggleGrid()">GRID: ON</button>
+                <button onclick="editor.colorPicker()">COLOR</button>
+                <button onclick="editor.save()">SAVE</button>
+                <button onclick="editor.load()">LOAD</button>
+                <button onclick="editor.exportJSON()">EXPORT JSON</button>
+                <button onclick="editor.importJSON()">IMPORT JSON</button>
+                <button onclick="editor.clear()">CLEAR</button>
+                <button onclick="editor.testLevel()">TEST</button>
+            </div>
+            <button onclick="game.setState('menu')">BACK</button>
+        </div>
+        <div id="icons" style="display:none;">
+            <h2>ICON KIT</h2>
+            <div class="icons-grid">
+                <!-- Placeholder buttons for icons -->
+                <button onclick="game.setIcon(1)">Cube 1</button>
+                <button onclick="game.setIcon(2)">Ship 1</button>
+                <!-- Add more for full kit -->
+            </div>
+            <button onclick="game.setState('menu')">BACK</button>
+        </div>
+        <div id="fps">FPS: 60</div>
+        <div id="debug"></div>
+        <div id="progress">0%</div>
+        <div id="coins">Coins: 0/3</div>
+        <div id="orbs">Orbs: 0/3</div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
