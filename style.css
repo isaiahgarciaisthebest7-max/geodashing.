@@ -1,0 +1,21 @@
+/* style.css - Enhanced Ultimate GD styling for bugless UI */
+* { margin: 0; padding: 0; box-sizing: border-box; user-select: none; }
+body { background: #000; color: #0f0; font-family: 'Courier New', monospace; font-weight: bold; overflow: hidden; transition: background 0.3s; }
+body.dark { background: #000; }
+body.light { background: #111; } /* For options toggle */
+#canvas { display: block; cursor: none; image-rendering: pixelated; image-rendering: -moz-crisp-edges; width: 100vw; height: 100vh; }
+#ui { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 10; }
+#ui > div { pointer-events: auto; }
+.logo { font-size: 48px; text-align: center; text-shadow: 0 0 20px #0f0; margin: 50px 0; animation: glow 2s infinite alternate; }
+@keyframes glow { 0% { text-shadow: 0 0 10px #0f0; } 100% { text-shadow: 0 0 30px #0f0; } }
+h2 { text-align: center; font-size: 32px; margin: 20px 0; text-shadow: 0 0 10px #0f0; }
+button { background: #111; color: #0f0; border: 2px solid #0f0; padding: 15px 30px; margin: 10px; font-size: 20px; font-family: inherit; cursor: pointer; transition: all 0.2s ease; text-shadow: 0 0 10px #0f0; box-shadow: 0 0 20px #0f0; border-radius: 5px; }
+button:hover { background: #0f0; color: #000; box-shadow: 0 0 40px #0f0; transform: scale(1.05); }
+.levels-grid, .icons-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; padding: 20px; }
+#fps, #debug, #progress, #coins, #orbs { position: absolute; background: rgba(0,0,0,0.5); padding: 5px 10px; font-size: 14px; border-radius: 5px; }
+#fps { top: 10px; right: 10px; }
+#progress { top: 10px; left: 10px; }
+#coins { top: 30px; left: 10px; }
+#orbs { top: 50px; left: 10px; }
+.toolbar { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 20px; max-width: 100%; padding: 10px; background: rgba(0,0,0,0.8); border-bottom: 2px solid #0f0; }
+#pause, #menu, #levelselect, #stats, #editor, #icons { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0,0,0,0.9); padding: 40px; border: 3px solid #0f0; border-radius: 10px; text-align: center; box-shadow: 0 0 50px #0f0; max-height: 90vh; overflow-y: auto; width: 80vw; max-width: 1200px; transition: opacity 0.3s; }
